@@ -118,6 +118,9 @@ jobs:
       - run:
             name: Verify Cluster and Test Application
             command: |
+              docker container ls
+              kubectl delete svc udacitycapstone
+              kubectl delete deployment udacitycapstone 
               kubectl get svc
               kubectl get nodes
               kubectl get deployment
@@ -142,12 +145,12 @@ workflows:
           cluster-name: udacity-capstone
       #    requires:
       #      - create-deployment     
-      - aws-eks/update-container-image:
-          cluster-name: udacity-capstone
-          container-image-updates: 'udacitycapstone=gauravkr04/udacitycapstone:latest'
-          get-rollout-status: true
-          record: true
-          resource-name:  deployment/udacitycapstone
-          requires:
-             - test-deployment
+      #- aws-eks/update-container-image:
+      #    cluster-name: udacity-capstone
+      #    container-image-updates: 'udacitycapstone=gauravkr04/udacitycapstone:latest'
+      ##    get-rollout-status: true
+      #    record: true
+      ##    resource-name:  deployment/udacitycapstone
+      #    requires:
+      #       - test-deployment
 
