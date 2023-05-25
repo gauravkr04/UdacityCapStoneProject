@@ -124,18 +124,19 @@ jobs:
 workflows:
   deployment:
     jobs:
-      #- lint
-      #- create-docker-image
-      #    requires:
-      #      - lint
+      - lint
+      - create-docker-image
+          requires:
+            - lint
       #- create-project-cluster:
       #    cluster-name: udacity-capstone
       #    requires:
       #      - create-docker-image
       - create-deployment:
           cluster-name: udacity-capstone
-      #    requires:
-      #      - create-project-cluster    
+          requires:
+      #      - create-project-cluster
+            - create-docker-image
       - test-deployment:
           cluster-name: udacity-capstone
           requires:
