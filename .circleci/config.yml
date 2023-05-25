@@ -2,7 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-python/ for more details
 #
-version: 2
+version: 2.1
 
 jobs:
   lint:
@@ -26,7 +26,7 @@ jobs:
           no_output_timeout: 30m 
   
 workflows:
-  default:
+  deployment:
     jobs:
       - lint
 
