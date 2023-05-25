@@ -124,29 +124,29 @@ jobs:
 workflows:
   deployment:
     jobs:
-      #- lint
-      #- create-docker-image:
-      ###    requires:
-      #      - lint
+      - lint
+      - create-docker-image:
+          requires:
+            - lint
       #- create-project-cluster:
       #    cluster-name: udacity-capstone
       #    requires:
       #      - create-docker-image
-      #- create-deployment:
-      #    cluster-name: udacity-capstone
-      #    requires:
+      - create-deployment:
+          cluster-name: udacity-capstone
+          requires:
       #      - create-project-cluster
-      #      - create-docker-image
-      #- test-deployment:
-      ##    cluster-name: udacity-capstone
-      #    requires:
-      #      - create-deployment     
+            - create-docker-image
+      - test-deployment:
+          cluster-name: udacity-capstone
+          requires:
+            - create-deployment     
       - aws-eks/update-container-image:
           cluster-name: udacity-capstone
           container-image-updates: 'udacitycapstone=gauravkr04/udacitycapstone:1.0'
           get-rollout-status: true
           record: true
           resource-name:  deployment/udacitycapstone
-        #  requires:
-        #     - test-deployment
+          requires:
+             - test-deployment
 
