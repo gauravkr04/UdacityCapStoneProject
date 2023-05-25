@@ -1,0 +1,37 @@
+{
+   "kind":"Deployment",
+   "apiVersion":"v1",
+   "metadata":{
+      "name":"udacitybg",
+      "labels":{
+         "app":"udacitybg"
+      }
+   },
+   "spec":{
+      "replicas":1,
+      "selector":{
+         "app":"udacitybg"
+      },
+      "template":{
+         "metadata":{
+            "labels":{
+               "app":"udacitybg"
+            }
+         },
+         "spec":{
+            "containers":[
+               {
+                  "name":"udacitybg",
+                  "image":"gauravkr04/udacitybg",
+                  "ports":[
+                     {
+                        "name":"http-server",
+                        "containerPort":80
+                     }
+                  ]
+               }
+            ]
+         }
+      }
+   }
+}

@@ -5,12 +5,12 @@
 # Step 1:
 # This is your Docker ID/path
 # dockerpath=<>
-dockerpath=gauravkr04/udacity-housing
+dockerpath=gauravkr04/udacityblue
 echo $dockerpath
 
 # Step 2
 # Run the Docker Hub container with kubernetes
-kubectl run udacity-housing --image=$dockerpath:v1.0.0 --port=80
+kubectl run udacity-housing --image=$dockerpath --port=80
 
 
 # Step 3:
