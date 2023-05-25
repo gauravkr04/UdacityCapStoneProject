@@ -140,14 +140,14 @@ workflows:
       #      - create-project-cluster    
       - test-deployment:
           cluster-name: udacity-capstone
-      #    requires:
-      #      - create-deployment     
-      #- aws-eks/update-container-image:
-      #    cluster-name: udacity-capstone
-      #    container-image-updates: 'udacitycapstone=gauravkr04/udacitycapstone:latest'
-      #    get-rollout-status: true
-      #    record: true
-      #    resource-name:  deployment/udacitycapstone
-      #    requires:
-      #       - test-deployment
+          requires:
+            - create-deployment     
+      - aws-eks/update-container-image:
+          cluster-name: udacity-capstone
+          container-image-updates: 'udacitycapstone=gauravkr04/udacitycapstone:latest'
+          get-rollout-status: true
+          record: true
+          resource-name:  deployment/udacitycapstone
+          requires:
+             - test-deployment
 
