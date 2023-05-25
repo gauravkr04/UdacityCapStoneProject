@@ -125,7 +125,7 @@ workflows:
   deployment:
     jobs:
       - lint
-      - create-docker-image
+      - create-docker-image:
           requires:
             - lint
       #- create-project-cluster:
