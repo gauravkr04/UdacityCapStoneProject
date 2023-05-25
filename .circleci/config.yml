@@ -103,21 +103,26 @@ jobs:
           
   test-deployment:
     executor: aws-eks/python3
+    parameters:
+      cluster-name:
+        description: |
+          Name of the EKS cluster
+        type: string
 
-      steps:
-        - kubernetes/install
-        - aws-eks/update-kubeconfig-with-authenticator:
-            cluster-name: << parameters.cluster-name >>
-            install-kubectl: true
-            aws-region: $AWS_DEFAULT_REGION         
-        - run:
-              name: Verify Cluster and Test Application
-              command: |
-                kubectl get svc
-                kubectl get nodes
-                kubectl get deployment
-                kubectl get pods
-  
+    steps:
+      - kubernetes/install
+      - aws-eks/update-kubeconfig-with-authenticator:
+          cluster-name: << parameters.cluster-name >>
+          install-kubectl: true
+          aws-region: $AWS_DEFAULT_REGION         
+      - run:
+            name: Verify Cluster and Test Application
+            command: |
+              kubectl get svc
+              kubectl get nodes
+              kubectl get deployment
+              kubectl get pods
+
 workflows:
   deployment:
     jobs:
