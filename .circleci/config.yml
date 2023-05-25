@@ -26,10 +26,27 @@ jobs:
             source ~/.capstone/bin/activate
             make lint
   
-          no_output_timeout: 30m 
+  create-docker-image:
+    machine: true
+    working_directory: ~/app
+    steps:
+      - checkout
+      - run:
+          name: Build, Test and Upload docker image
+          command: |
+            docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PWD}
+            docker build -t gauravkr04/udacityblue1 .
+            docker run -d --rm --name app -p 8081:8080 gauravkr04/udacityblue1:1.0.0
+            sleep 5
+            docker container ls
+
+            docker push gauravkr04/udacityblue1:1.0.0
   
 workflows:
   deployment:
     jobs:
       - lint
+      - create-docker-image
+          requires:
+            - lint
 
