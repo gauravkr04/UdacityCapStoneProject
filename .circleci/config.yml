@@ -118,7 +118,6 @@ jobs:
       - run:
             name: Verify Cluster and Test Application
             command: |
-              docker container ls
               kubectl delete svc udacitycapstone
               kubectl delete deployment udacitycapstone 
               kubectl get svc
