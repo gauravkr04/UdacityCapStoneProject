@@ -3,7 +3,6 @@
 # Check https://circleci.com/docs/2.0/language-python/ for more details
 #
 version: 2
-jobs:
 
 jobs:
   lint:
@@ -25,5 +24,9 @@ jobs:
             make lint
   
           no_output_timeout: 30m 
-        
+  
+workflows:
+  default:
+    jobs:
+      - lint
 
