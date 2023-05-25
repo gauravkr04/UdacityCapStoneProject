@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udacitycapstone
+  labels:
+    app: udacitycapstone
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: udacitycapstone
+  strategy:
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: udacitycapstone
+    spec:
+      containers:
+        - image: gauravkr04/udacityblue1:latest
+          imagePullPolicy: Always
+          name: udacitycapstone
+          ports:
+            - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: udacitycapstone
+  labels:
+    app: udacitycapstone
+spec:
+  type: LoadBalancer
+  selector:
+    app: udacitycapstone
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
