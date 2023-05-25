@@ -42,10 +42,10 @@ jobs:
           command: |
             docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PWD}
             docker build -t gauravkr04/udacitycapstone:1.0 .
-            docker run -d --rm --name app -p 8080:8080 gauravkr04/udacitycapstone:1.0
+            docker run -d --rm --name app -p 8081:8080 gauravkr04/udacitycapstone:1.0
             sleep 5
             docker container ls
-            export URL="http://localhost:8080"
+            export URL="http://localhost:8081"
             export response=$(curl -s $URL)
             echo "response : $response"
             if [[ $response == *"Udacity"* ]]; then
