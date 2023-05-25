@@ -41,10 +41,10 @@ jobs:
           name: Build and Upload docker image
           command: |
             docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PWD}
-            docker build -t gauravkr04/udacitycapstone:1.0 .
+            docker build -t gauravkr04/udacitycapstone:2.0 .
             docker container ls
 
-            docker push gauravkr04/udacitycapstone:1.0
+            docker push gauravkr04/udacitycapstone:2.0
             
   create-project-cluster:
     executor: aws-eks/python3
@@ -140,12 +140,12 @@ workflows:
           cluster-name: udacity-capstone
           requires:
             - create-deployment     
-      #- aws-eks/update-container-image:
-      #    cluster-name: udacity-capstone
-      #    container-image-updates: 'udacitycapstone=gauravkr04/udacitycapstone:latest'
-      ##    get-rollout-status: true
-      #    record: true
-      ##    resource-name:  deployment/udacitycapstone
-      #    requires:
-      #       - test-deployment
+      - aws-eks/update-container-image:
+          cluster-name: udacity-capstone
+          container-image-updates: 'udacitycapstone=gauravkr04/udacitycapstone:2.0'
+          get-rollout-status: true
+          record: true
+          resource-name:  deployment/udacitycapstone
+          requires:
+             - test-deployment
 
