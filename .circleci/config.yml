@@ -134,8 +134,8 @@ workflows:
       #      - create-docker-image
       - create-deployment:
           cluster-name: udacity-capstone
-          requires:
-            - create-project-cluster    
+      #    requires:
+      #      - create-project-cluster    
       - test-deployment:
           cluster-name: udacity-capstone
           requires:
