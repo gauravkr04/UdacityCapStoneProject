@@ -145,7 +145,7 @@ workflows:
       - aws-eks/update-container-image:
           cluster-name: udacity-capstone
           container-image-updates: 'udacitycapstone=gauravkr04/udacitycapstone:latest'
-          get-rollout-status: true
+          get-rollout-status: false
           record: true
           resource-name:  deployment/udacitycapstone
           requires:
