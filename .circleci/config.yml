@@ -132,14 +132,14 @@ workflows:
       #    cluster-name: udacity-capstone
       #    requires:
       #      - create-docker-image
-      #- create-deployment:
-      #    cluster-name: udacity-capstone
-      #    requires:
-      #      - create-project-cluster    
+      - create-deployment:
+          cluster-name: udacity-capstone
+          requires:
+            - create-project-cluster    
       - test-deployment:
           cluster-name: udacity-capstone
-      #    requires:
-      #      - create-deployment     
+          requires:
+            - create-deployment     
       #- aws-eks/update-container-image:
       #    cluster-name: udacity-capstone
       #    container-image-updates: 'udacitycapstone=gauravkr04/udacitycapstone:latest'
