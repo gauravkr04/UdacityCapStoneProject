@@ -6,14 +6,14 @@ metadata:
     app: udacitycapstone
   namespace: default
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: udacitycapstone
   strategy:
     rollingUpdate:
-      maxSurge: 50%
-      maxUnavailable: 50%
+      #maxSurge: 50%
+      maxUnavailable: 1
     type: RollingUpdate
   template:
     metadata:
@@ -21,7 +21,7 @@ spec:
         app: udacitycapstone
     spec:
       containers:
-        - image: gauravkr04/udacityblue1:latest
+        - image: gauravkr04/udacitycapstone:1.0
           imagePullPolicy: Always
           name: udacitycapstone
           ports:
