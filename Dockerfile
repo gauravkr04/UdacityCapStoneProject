@@ -15,4 +15,4 @@ COPY ./blue/index.html  /usr/share/nginx/html
 
 ## Step 4:
 # Expose port 80
-EXPOSE 80
+EXPOSE 8080
