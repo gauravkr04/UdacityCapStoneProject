@@ -4,6 +4,12 @@
 #
 version: 2.1
 
+orbs:
+  aws-cli: circleci/aws-cli@2.0.3
+  kubernetes: circleci/kubernetes@0.12.0
+  aws-eks: circleci/aws-eks@0.2.3
+  
+
 jobs:
   lint:
     docker:
